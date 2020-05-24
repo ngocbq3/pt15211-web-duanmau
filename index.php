@@ -1,8 +1,8 @@
 <?php
-require_once "libs/database.php";
-$result = listAll('categories');
-echo "<pre>";
+require_once "libs/categories.php";
+$result = list_all_category();
 var_dump($result);
+
 
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 

@@ -45,3 +45,67 @@ function listOne($table, $id, $value)
     }
     return $result;
 }
+
+//Hàm thêm vào 1 dòng dữ liệu trong bảng $table
+//Dữ liệu là một mảng $data bao gồm có key và value
+function insert($table, $data = array())
+{
+    $conn = connection();
+    try {
+        $sql = "INSERT INTO $table SET ";
+        foreach ($data as $key => $value) {
+            $sql .= "$key=:$key, ";
+        }
+        $sql = rtrim($sql, ", ");
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($data);
+    } catch (PDOException $e) {
+        echo "Lỗi dữ liệu " . $e->getMessage();
+    } finally {
+        unset($conn);
+    }
+    return $result;
+}
+
+//Hàm cập nhật dữ liệu trong bảng $table
+//Dữ liệu được cập là một mảng $data
+//Có điều cập nhật theo id
+function update($table, $data = array(), $id, $value_id)
+{
+    $conn = connection();
+    try {
+        $sql = "UPDATE $table SET ";
+        foreach ($data as $key => $value) {
+            $sql .= "$key=:$key, ";
+        }
+        $sql = rtrim($sql, ", ");
+        $sql .= " WHERE $id=:$id";
+        $data[$id] = $value_id; //Thêm key là id vào mảng data
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($data);
+    } catch (PDOException $e) {
+        echo "Lỗi dữ liệu " . $e->getMessage();
+    } finally {
+        unset($conn);
+    }
+    return $result;
+}
+
+//Hàm xóa dữ liệu với bảng $table
+//Có điều kiện là id với giá trị $value
+function delete($table, $id, $value_id)
+{
+    $conn = connection();
+    try {
+        $sql = "DELETE FROM $table WHERE $id=:$id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":$id", $value_id);
+        $result = $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Lỗi dữ liệu " . $e->getMessage();
+    } finally {
+        unset($conn);
+    }
+    return $result;
+}
