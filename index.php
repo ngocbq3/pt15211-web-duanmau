@@ -1,6 +1,6 @@
 <?php
 require_once "libs/categories.php";
-$result = list_all_category();
+$result = insert_category('Lg elictric', 'lg.png');
 var_dump($result);
 
 
