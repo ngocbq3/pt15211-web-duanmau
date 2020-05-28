@@ -24,3 +24,8 @@ function insert_category($name, $image)
     ];
     return insert('categories', $data);
 }
+//Xóa dữ liệu trong bảng categories
+function delete_category($id)
+{
+    delete('categories', 'id', $id);
+}

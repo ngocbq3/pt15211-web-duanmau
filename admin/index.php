@@ -1,5 +1,7 @@
 <?php
+ob_start();
 $page = isset($_GET['page']) ? $_GET['page'] : '';
+require_once '../config/config.php';
 include_once 'template/header.php';
 
 switch ($page) {
@@ -18,6 +20,9 @@ switch ($page) {
             case 'add':
                 include_once 'categories/create.php';
                 break;
+            case 'edit':
+                include_once 'categories/edit.php';
+                break;
         }
         break;
     default:
@@ -26,3 +31,19 @@ switch ($page) {
 }
 
 include_once 'template/footer.php';
+?>
+<script>
+    $(document).ready(function() {
+        $('#checkall').change(function() {
+            $('input:checkbox').prop('checked', $(this).prop('checked'));
+        })
+        $('#btndel-category').click(function() {
+            if ($('input:checked').length === 0) {
+                alert("Bạn cần chọn ít nhất một danh mục");
+                return false;
+            }
+        })
+    })
+</script>
+<?php
+ob_end_flush();
