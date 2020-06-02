@@ -109,3 +109,20 @@ function delete($table, $id, $value_id)
     }
     return $result;
 }
+//Phương thức thực thi câu lệnh sql select
+//Trả về giá trị là bản ghi lấy được
+function query($sql)
+{
+    $conn = connection();
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (PDOException $e) {
+        echo "Lỗi dữ liệu " . $e->getMessage();
+    } finally {
+        unset($conn);
+    }
+}
+//Phương thức thực thi câu lênh sql có điều kiện

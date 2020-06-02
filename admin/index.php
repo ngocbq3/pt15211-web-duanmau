@@ -1,7 +1,9 @@
 <?php
 ob_start();
+session_start();
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 require_once '../config/config.php';
+require_once '../libs/product.php';
 include_once 'template/header.php';
 
 switch ($page) {
@@ -25,12 +27,24 @@ switch ($page) {
                 break;
         }
         break;
+    case 'product':
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case 'search':
+                include_once 'products/search.php';
+                break;
+        }
+        break;
     default:
         echo "404 Not found";
         break;
 }
 
 include_once 'template/footer.php';
+
+if (isset($_SESSION['message'])) {
+    unset($_SESSION['message']);
+}
 ?>
 <script>
     $(document).ready(function() {

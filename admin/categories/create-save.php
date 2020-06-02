@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../../libs/categories.php';
 require_once '../../config/config.php';
 
@@ -15,5 +16,7 @@ if (isset($_POST['btnsave'])) {
     if ($okUpload) {
         move_uploaded_file($_FILES['image']['tmp_name'], '../../images/' . $image);
     }
+    $_SESSION['message'] = "Thêm dữ liệu thành công";
     header('Location:' . ROOT . 'admin/?page=category');
+    die();
 }

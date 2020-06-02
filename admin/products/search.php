@@ -1,38 +1,19 @@
 <?php
-require_once "../libs/categories.php";
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    delete_category($id);
-    $_SESSION['message'] = "Xóa dữ liệu thành công";
-    header('location:' . ROOT . 'admin/?page=category');
-    die;
-}
-if (isset($_POST['btn-del'])) {
-    extract($_REQUEST);
-    foreach ($id as $id_category) {
-        delete_category($id_category);
-    }
-    $_SESSION['message'] = "Xóa dữ liệu thành công";
-    header('location:' . ROOT . 'admin/?page=category');
-    die;
-}
-
-$cate = list_all_category();
+extract($_REQUEST);
+$result = search_product($keyword);
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <?php if (isset($_SESSION['message'])) : ?>
-        <h6 class="text-success"><?= $_SESSION['message'] ?></h6>
-    <?php endif; ?>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách danh mục <a href="<?= ROOT ?>admin/?page=category&action=add" class="btn btn-primary">Thêm mới</a></h6>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <form action="" method="POST">
+                <form action="" method="POST" class="col-12">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -42,7 +23,8 @@ $cate = list_all_category();
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Image</th>
-                                <th>Created at</th>
+                                <th>Status</th>
+                                <th>Price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -54,25 +36,27 @@ $cate = list_all_category();
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Image</th>
-                                <th>Created at</th>
+                                <th>Status</th>
+                                <th>Price</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            <?php foreach ($cate as $c) : ?>
+                            <?php foreach ($result as $r) : ?>
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="id[]" id="" value="<?= $c['id'] ?>">
+                                        <input type="checkbox" name="id[]" id="" value="<?= $r['id_product'] ?>">
                                     </td>
-                                    <td><?= $c['id'] ?></td>
-                                    <td><?= $c['name'] ?></td>
+                                    <td><?= $r['id_product'] ?></td>
+                                    <td><?= $r['name_product'] ?></td>
                                     <td>
-                                        <img src="../images/<?= $c['image'] ?>" width="120" alt="">
+                                        <img src="../images/<?= $r['image_product'] ?>" width="120" alt="">
                                     </td>
-                                    <td><?= $c['created_at'] ?></td>
+                                    <td><?= ($r['status']) ? 'Có hàng' : 'Hết hàng' ?></td>
+                                    <td><?= $r['price'] ?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=category&action=edit&id=<?= $c['id'] ?>" class="btn btn-success">Sửa</a>
-                                        <a href="<?= ROOT ?>admin/?page=category&id=<?= $c['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger">Xóa</a>
+                                        <a href="<?= ROOT ?>admin/?page=product&action=edit&id=<?= $c['id'] ?>" class="btn btn-success">Sửa</a>
+                                        <a href="<?= ROOT ?>admin/?page=product&id=<?= $c['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger">Xóa</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
