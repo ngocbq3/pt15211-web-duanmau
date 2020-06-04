@@ -1,11 +1,14 @@
 <?php
-extract($_REQUEST);
-$result = search_product($keyword);
+$result = list_all_product();
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
+    <?php if (isset($_SESSION['message'])) : ?>
+        <div class="alert alert-success alert-bold">
+            <h6 class="font-weight-bold alert-text"><?= $_SESSION['message'] ?></h6>
+        </div>
+    <?php endif; ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">

@@ -3,6 +3,7 @@ ob_start();
 session_start();
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 require_once '../config/config.php';
+require_once '../libs/categories.php';
 require_once '../libs/product.php';
 include_once 'template/header.php';
 
@@ -30,8 +31,14 @@ switch ($page) {
     case 'product':
         $action = isset($_GET['action']) ? $_GET['action'] : '';
         switch ($action) {
+            case '':
+                include_once 'products/index.php';
+                break;
             case 'search':
                 include_once 'products/search.php';
+                break;
+            case 'edit':
+                include_once 'products/edit.php';
                 break;
         }
         break;
@@ -55,6 +62,13 @@ if (isset($_SESSION['message'])) {
             if ($('input:checked').length === 0) {
                 alert("Bạn cần chọn ít nhất một danh mục");
                 return false;
+            }
+        })
+        $('.status').change(function() {
+            if ($(this).prop('checked')) {
+                $('#span').html('Còn hàng')
+            } else {
+                $('#span').html('Hết hàng')
             }
         })
     })

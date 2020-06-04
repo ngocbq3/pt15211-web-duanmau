@@ -1,5 +1,4 @@
 <?php
-require_once "../libs/categories.php";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     delete_category($id);
@@ -19,11 +18,12 @@ if (isset($_POST['btn-del'])) {
 
 $cate = list_all_category();
 ?>
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <?php if (isset($_SESSION['message'])) : ?>
-        <h6 class="text-success"><?= $_SESSION['message'] ?></h6>
+        <div class="card-header py-3 bg-success">
+            <h6 class="font-weight-bold text-white"><?= $_SESSION['message'] ?></h6>
+        </div>
     <?php endif; ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -32,7 +32,7 @@ $cate = list_all_category();
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <form action="" method="POST">
+                <form action="" method="POST" class="col-md-12">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -48,9 +48,7 @@ $cate = list_all_category();
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>
-
-                                </th>
+                                <th> </th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Image</th>
@@ -71,8 +69,8 @@ $cate = list_all_category();
                                     </td>
                                     <td><?= $c['created_at'] ?></td>
                                     <td>
-                                        <a href="<?= ROOT ?>admin/?page=category&action=edit&id=<?= $c['id'] ?>" class="btn btn-success">Sửa</a>
-                                        <a href="<?= ROOT ?>admin/?page=category&id=<?= $c['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger">Xóa</a>
+                                        <a href="<?= ROOT ?>admin/?page=category&action=edit&id=<?= $c['id'] ?>" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                        <a href="<?= ROOT ?>admin/?page=category&id=<?= $c['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa không')" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -83,6 +81,5 @@ $cate = list_all_category();
             </div>
         </div>
     </div>
-
 </div>
 <!-- /.container-fluid -->
