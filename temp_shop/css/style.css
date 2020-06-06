@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 980px;
+    margin: auto;
+}
+
+header {
+    line-height: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .logo {
+    float: left;
+}
+
+nav {
+    background: #ccc;
+    line-height: 45px;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav li a {
+    display: block;
+    padding: 0 15px;
+    color: black;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    color: #666;
+}
+
+article {
+    width: 100%;
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-between;
+}
+
+.content {
+    width: 74%;
+}
+
+aside {
+    width: 25%;
+}
+
+.content .row {
+    display: flex;
+    flex-wrap: wrap;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.col {
+    width: 33.333333333%;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    padding: 10px 5px;
+    padding-bottom: 40px;
+    position: relative;
+}
+
+.col:nth-child(3n) {
+    margin-right: 0;
+}
+
+.col img {
+    max-width: 98%;
+    height: 190px;
+    margin: 5px 0;
+    opacity: 0.6;
+}
+
+.col a:hover img {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.col a {
+    color: black;
+    text-decoration: none;
+}
+
+.col a:hover h4 {
+    color: #ccc;
+}
+
+.col .price {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    color: red;
+}
+
+.panel {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.heading {
+    line-height: 45px;
+    background-color: #ccc;
+    padding-left: 15px;
+}
+
+.headline {
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+
+/*login*/
+
+.form {
+    padding: 10px;
+}
+
+.form .form-group {
+    margin: 5px 0;
+}
+
+.form input {
+    width: 99%;
+    height: 25px;
+}
+
+.form .btn {
+    padding: 5px 10px;
+}
+
+.product {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product .img {
+    width: 20%;
+    border: 1px solid#CCC;
+}
+
+.product .img img {
+    width: 100%;
+}
+
+.product .title {
+    width: 80%;
+    padding-left: 10px;
+}
+
+.product .title a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.product .title a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    line-height: 80px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
