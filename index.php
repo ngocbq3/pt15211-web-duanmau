@@ -1,23 +1,29 @@
 <?php
+session_start();
 require_once "libs/categories.php";
-$result = insert_category('Lg elictric', 'lg.png');
-var_dump($result);
-
-
+require_once "libs/product.php";
+require_once 'config/config.php';
 $page = isset($_GET['page']) ? $_GET['page'] : '';
-
+$categories = list_all_category();
 switch ($page) {
     case '':
     case 'home':
-        include_once "site/home.php";
+        $view_page = "layout/home.php";
         break;
     case 'category':
-        include_once "site/category.php";
+        $view_page = "layout/category.php";
         break;
     case 'product':
-        include_once "site/product.php";
+        $view_page = "layout/product.php";
+        break;
+    case 'logout':
+        unset($_SESSION['user']);
+        header('location:' . ROOT);
+        die;
         break;
     default:
-        include_once "site/404.php";
+        $view_page = "site/404.php";
         break;
 }
+
+include_once "layout/layout.php";

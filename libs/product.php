@@ -32,6 +32,19 @@ function list_all_product()
     Order by id_product DESC";
     return query($sql);
 }
+//Hiển thị danh sách sản phẩm có hạn chế
+function list_limit_product($count)
+{
+    $sql = "SELECT * FROM products ORDER BY id DESC LIMIT 0,$count";
+    return query($sql);
+}
+
+//Sản phẩm giảm giá
+function list_sale_product()
+{
+    $arr = ['sale', '>', 0];
+    return query_where('products', $arr);
+}
 //function lấy ra 1 sản phẩm
 function list_one_product($id)
 {

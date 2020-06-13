@@ -6,7 +6,7 @@ require_once '../config/config.php';
 require_once '../libs/categories.php';
 require_once '../libs/product.php';
 include_once 'template/header.php';
-
+check_role();
 switch ($page) {
     case '':
     case 'home':
@@ -41,6 +41,11 @@ switch ($page) {
                 include_once 'products/edit.php';
                 break;
         }
+        break;
+    case 'logout':
+        unset($_SESSION['user']);
+        header('location:' . ROOT . 'admin/login.php');
+        die;
         break;
     default:
         echo "404 Not found";

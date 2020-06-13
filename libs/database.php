@@ -126,3 +126,22 @@ function query($sql)
     }
 }
 //Phương thức thực thi câu lênh sql có điều kiện
+function query_where($table, $arr)
+{
+    $conn = connection();
+    try {
+        $sql = "SELECT * FROM $table WHERE $arr[0] $arr[1] :$arr[0]";
+        $stmt = $conn->prepare($sql);
+        $data = [
+            $arr[0] => $arr[1]
+        ];
+        $stmt->execute($data);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (PDOException $e) {
+        echo "Lỗi dữ liệu " . $e->getMessage();
+    } finally {
+        unset($conn);
+    }
+}
