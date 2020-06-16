@@ -1,7 +1,7 @@
 <nav>
     <ul>
         <li>
-            <a href="#">Home</a>
+            <a href="<?= ROOT ?>">Home</a>
         </li>
         <?php foreach ($categories as $cate) : ?>
             <li>

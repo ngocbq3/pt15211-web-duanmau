@@ -133,7 +133,7 @@ function query_where($table, $arr)
         $sql = "SELECT * FROM $table WHERE $arr[0] $arr[1] :$arr[0]";
         $stmt = $conn->prepare($sql);
         $data = [
-            $arr[0] => $arr[1]
+            $arr[0] => $arr[2]
         ];
         $stmt->execute($data);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -27,3 +27,12 @@ function check_role()
     //Trường hợp người dùng chưa đăng nhập
     header('location:' . ROOT . 'admin/login.php');
 }
+
+//Kiểm tra tài khoản đã đăng nhập chưa
+function check_account()
+{
+    if (isset($_SESSION['user'])) {
+        return true;
+    }
+    return false;
+}
