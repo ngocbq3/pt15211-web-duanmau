@@ -68,3 +68,11 @@ function update_product($cate_id, $name, $description, $image, $detail, $price, 
     ];
     return update('products', $data, 'id', $id_value);
 }
+//Hàm cập nhật lượng view (số lượng lượt xem bài)
+function update_view_product($id)
+{
+    $sql = "UPDATE products SET view=view+1 WHERE id=$id";
+    $conn = connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}

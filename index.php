@@ -13,7 +13,7 @@ if (isset($btndangnhap)) {
         $user = check_user($username);
         if (password_verify($password, $user['password'])) {
             $_SESSION['user'] = $user;
-            header('location:' . ROOT);
+            header('location:' . $_SERVER['REQUEST_URI']);
         } else {
             $error['password'] = "Mật khẩu không đúng!";
         }
@@ -33,6 +33,7 @@ switch ($page) {
         break;
     case 'product':
         $product = list_one_product($id);
+        $title = $product['name'];
         $view_page = "layout/product.php";
         break;
     case 'logout':

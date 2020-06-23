@@ -1,7 +1,10 @@
 <?php
 if (isset($btnComment)) {
     insert_comment($id, $_SESSION['user']['id'], $content);
+    header("location:" . $_SERVER['REQUEST_URI']);
+    die;
 }
+update_view_product($id)
 ?>
 <div class="content">
     <h3><?= $product['name'] ?></h3>

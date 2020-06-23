@@ -21,39 +21,18 @@ $product_sale = list_sale_product();
     </div>
     <div class="heading headline">Sản phẩm đang được giảm giá</div>
     <div class="row">
-        <div class="col">
-            <a href="#">
-                <img src="images/anh1.jfif" alt="">
-                <div class="product-name">
-                    <h4>Samsung Galaxy A50s - Chính hãng</h4>
-                </div>
-                <div class="price">
-                    7000000 <u>đ</u>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="#">
-                <img src="images/iphone.jfif" alt="">
-                <div class="product-name">
-                    <h4>Iphone 11 Pro Max</h4>
-                </div>
-                <div class="price">
-                    27000000 <u>đ</u>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="#">
-                <img src="images/anh1.jfif" alt="">
-                <div class="product-name">
-                    <h4>Apple iPad Mini 5 - Wifi - 64GB - Chính hãng</h4>
-                </div>
-                <div class="price">
-                    7000000 <u>đ</u>
-                </div>
-            </a>
-        </div>
-
+        <?php foreach ($product_sale as $pro_sale) : ?>
+            <div class="col">
+                <a href="<?= ROOT ?>?page=product&id=<?= $pro_new['id'] ?>">
+                    <img src="images/<?= $pro_sale['image'] ?>" alt="">
+                    <div class="product-name">
+                        <h4><?= $pro_sale['name'] ?></h4>
+                    </div>
+                    <div class="price">
+                        <?= $pro_sale['price'] ?> <u>đ</u>
+                    </div>
+                </a>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>

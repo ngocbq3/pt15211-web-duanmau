@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop online</title>
+    <title><?= isset($title) ? $title : '' ?> - Shop online</title>
     <link rel="stylesheet" href="layout/css/style.css">
 </head>
 
